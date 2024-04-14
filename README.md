@@ -8,4 +8,4 @@ Average speed - 60 seconds per lesson. Can differ depending on hardware
 2. Open cmd and go to project folder
 3. Run ```python main.py```
 4. New Chrome window will be opened where you need to login(session is saved, so you only need to do it once)
-5. Enjoy the farm)
+5. Enjoy the farm(you can minimise the Chrome window)
