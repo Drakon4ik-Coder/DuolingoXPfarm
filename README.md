@@ -1,5 +1,6 @@
 # Duolingo experience farm(Japanese only)
 ### Selenium python program to farm experience using kanji
+Average speed - 60 seconds per lesson. Can differ depending on hardware
 ## Demo:
 ![](images/duoFarmExample.gif)
 ## How to use:
