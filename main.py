@@ -43,6 +43,7 @@ def go_next_task():
     except:
         pass
 
+
 # wait for text to be present on page
 def wait_for_text(text):
     try:
@@ -114,31 +115,39 @@ def third_task():
     return True
 
 
+def calc_dot(path):
+    edge_cords = [path]
+    if "C" in path:
+        edge_cords = path.split("C")
+    ret = []
+    for x in edge_cords:
+        line = [i.replace("M", "").replace(" ", "") for i in x.split("L")]
+        first_dot = [float(i) for i in line[0].split(",")][0:2]
+        second_dot = [float(i) for i in line[1].split(",")]
+        ret.append([round(j - i) for i, j in zip(first_dot, second_dot)])
+
+    return ret
+
+
 def draw_kanji():
     while not check_for_text("Continue"):
         action = ActionChains(driver)
         canvas = driver.find_elements(By.TAG_NAME, "svg")[1]
-        try:
-            start = canvas.find_elements(By.TAG_NAME, "circle")[1]
-            end = canvas.find_element(By.TAG_NAME, "image")
-            if end.get_attribute("height") != "18":
-                raise Exception("No end")
-            action.move_to_element(start)
-            action.click_and_hold()
-            action.move_to_element(end)
-            action.release()
-            try:
-                action.perform()
-            except:
-                pass
-        except IndexError:
-            action.click(canvas.find_element(By.TAG_NAME, "path"))
-            action.perform()
-            action.click(canvas.find_element(By.TAG_NAME, "path"))
-            action.perform()
-        except:
-            action.click(canvas.find_element(By.TAG_NAME, "path"))
-            action.perform()
+        path = canvas.find_element(By.TAG_NAME, "g").find_elements(By.TAG_NAME, "path")
+        path = [i for i in path if not "pathLength" in i.get_attribute("outerHTML")][0]
+        path_cords = path.get_attribute("d")
+        action.move_to_element(path)
+        res = calc_dot(path_cords)
+        if len(res) == 2:
+            action.move_by_offset(-(res[0][0] + res[1][0]), -(res[0][1] + res[1][1]))
+        else:
+            action.move_by_offset(-res[0][0], -res[0][1])
+        action.click_and_hold()
+        for cord in res:
+            action.move_by_offset(2 * cord[0], 2 * cord[1])
+        action.release()
+        action.perform()
+
         time.sleep(0.1)
     go_next_task()
 
@@ -153,21 +162,30 @@ if __name__ == '__main__':
     driver.get('https://www.duolingo.com/')
 
     start_session()
-
+    counter = 0
+    timeSum = 0
+    lastTime = time.time()
     # do kanji
     while True:
-        driver.get('https://www.duolingo.com/alphabets/ja/kanji/group/4')
-        time.sleep(3)
-        if not first_task():
-            continue
-        if not second_task():
-            continue
-        if not third_task():
-            continue
-        # do kanji drawing
-        while not check_for_text("Total XP"):
-            time.sleep(1)
-            draw_kanji()
-        # finish lesson
-        go_next_task()
-        time.sleep(1)
+        try:
+            driver.get('https://www.duolingo.com/alphabets/ja/kanji/group/4')
+            time.sleep(3)
+            if not first_task():
+                continue
+            if not second_task():
+                continue
+            if not third_task():
+                continue
+            # do kanji drawing
+            while not check_for_text("Total XP"):
+                time.sleep(1)
+                draw_kanji()
+            # finish lesson
+            go_next_task()
+            counter += 1
+            endTime = time.time()
+            timeSum += endTime - lastTime
+            print("finished in:", round(endTime - lastTime), "sec, average:", round(timeSum / counter), "sec")
+            lastTime = endTime
+        except:
+            print("Something went wrong")
