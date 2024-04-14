@@ -176,16 +176,16 @@ if __name__ == '__main__':
                 continue
             if not third_task():
                 continue
+            time.sleep(1)
             # do kanji drawing
-            while not check_for_text("Total XP"):
-                time.sleep(1)
+            while not check_for_text("Total XP") and not check_for_text("Bonus"):
                 draw_kanji()
-            # finish lesson
-            go_next_task()
+                time.sleep(1)
             counter += 1
             endTime = time.time()
             timeSum += endTime - lastTime
-            print("finished in:", round(endTime - lastTime), "sec, average:", round(timeSum / counter), "sec")
+            print("Finished lessons:", counter, "\nLast finished in:", round(endTime - lastTime), "sec, average:", round(timeSum / counter), "sec")
             lastTime = endTime
-        except:
+        except Exception as e:
+            print(e)
             print("Something went wrong")
