@@ -168,7 +168,7 @@ if __name__ == '__main__':
     # do kanji
     while True:
         try:
-            driver.get('https://www.duolingo.com/alphabets/ja/kanji/group/4')
+            driver.get('https://www.duolingo.com/alphabets/ja/kanji/group/9')
             time.sleep(3)
             if not first_task():
                 continue
