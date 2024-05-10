@@ -156,6 +156,7 @@ if __name__ == '__main__':
     # mute chrome
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--mute-audio")
+    chrome_options.add_argument('--headless')
 
     driver = webdriver.Chrome(chrome_options)
 
