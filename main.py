@@ -153,10 +153,13 @@ def draw_kanji():
 
 
 if __name__ == '__main__':
-    # mute chrome
     chrome_options = webdriver.ChromeOptions()
+    # mute chrome
     chrome_options.add_argument("--mute-audio")
+    # enable headless mode
     chrome_options.add_argument('--headless')
+    # set logging level to FATAL ERROR
+    chrome_options.add_argument("--log-level=3")
 
     driver = webdriver.Chrome(chrome_options)
 
