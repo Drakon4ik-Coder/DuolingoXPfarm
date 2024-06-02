@@ -79,10 +79,15 @@ def start_session():
 
 
 def first_task():
-    if not wait_for_text("Select the pronunciation for"):
+    if not wait_for_text("Select the correct meaning"):
         return False
-    header = driver.find_element(By.XPATH, "//*[contains(text(), 'Select the pronunciation for')]")
-    kanjiWord1 = kanji(header.text)
+    kanjiWord1 = None
+    for kanji in hiragana.keys():
+        try:
+            header = driver.find_element(By.XPATH, "//*[contains(text(), '{}')]".format(kanji))
+            kanjiWord1 = kanji
+        except:
+            pass
     if kanjiWord1 is None:
         return False
     answer = driver.find_element(By.XPATH, "//*[contains(text(), '{}')]".format(hiragana[kanjiWord1]))
@@ -92,10 +97,15 @@ def first_task():
 
 
 def second_task():
-    if not wait_for_text("Select the meaning for"):
+    if not wait_for_text("Select the correct meaning"):
         return False
-    header = driver.find_element(By.XPATH, "//*[contains(text(), 'Select the meaning for')]")
-    kanjiWord2 = kanji(header.text)
+    kanjiWord2 = None
+    for kanji in hiragana.keys():
+        try:
+            header = driver.find_element(By.XPATH, "//*[contains(text(), '{}')]".format(kanji))
+            kanjiWord2 = kanji
+        except:
+            pass
     if kanjiWord2 is None:
         return False
     answer = driver.find_element(By.XPATH, "//*[contains(text(), '{}')]".format(romanji[kanjiWord2]))

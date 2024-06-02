@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="625614ec-7dce-438d-8862-e42a6a60d1d3" name="Changes" comment="Made browser work in headless mode">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="625614ec-7dce-438d-8862-e42a6a60d1d3" name="Changes" comment="Disabled logging" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +102,7 @@
       <workItem from="1715033026042" duration="409000" />
       <workItem from="1715119852683" duration="15000" />
       <workItem from="1715284999397" duration="474000" />
-      <workItem from="1715354987126" duration="906000" />
+      <workItem from="1715354987126" duration="961000" />
     </task>
     <task id="LOCAL-00001" summary="Login and session save">
       <option name="closed" value="true" />
@@ -179,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715355228829</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Disabled logging">
+      <option name="closed" value="true" />
+      <created>1715355938989</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715355938989</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,7 +210,8 @@
     <MESSAGE value="Fixed the problem of continue looping when using double experience potion" />
     <MESSAGE value="Fixed script after duolingo update" />
     <MESSAGE value="Made browser work in headless mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made browser work in headless mode" />
+    <MESSAGE value="Disabled logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Disabled logging" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DuolingoXPfarm$main.coverage" NAME="main Coverage Results" MODIFIED="1715033088530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
